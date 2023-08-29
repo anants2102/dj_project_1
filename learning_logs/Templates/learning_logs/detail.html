@@ -9,10 +9,13 @@
         <p>{{entry.date_added|date:'M d, Y H:i'}}</p>
         <p>{{entry.text|linebreaks}}</p>
     </li>
-    {%empty%}
+    {% empty %}
     <li>
         <p>Their are no entries</p>
     </li>
     {%endfor%}
 </ul>
+<a href="{% url 'learning_logs:New_Entry' topic.id %}">
+    Add Entry
+</a>
     {% endblock content %}
