@@ -1,21 +1,53 @@
 {% extends 'learning_logs/base.html'%}
+{% load bootstrap5 %}
 {% block content %}
-<p>
-    Topic : {{topic}}
-</p>
-<ul>
+<div class="container-fluid bg-dark row m-0 ">
+    <div class="mx-auto text-center">
+     <h4 class="display-4 strong bg-dark text-white pb-5 ">
+    {{topic}}
+     </h4>
+    </div>
+    <div class="row mx-auto justify-content-center">
     {% for entry in entries %}
-    <li>
-        <p>{{entry.date_added|date:'M d, Y H:i'}}</p>
-        <p>{{entry.text|linebreaks}}</p>
-    </li>
+  
+        <div class="card m-3">
+            <div class="card-header">
+        {{entry.date_added|date:'M d, Y H:i'}}
+    </div>
+    <div class="card-body">
+<h5 class="card-title">
+    {{entry.text|linebreaks}}
+</h5>
+</div>
+</div>
+   
     {% empty %}
-    <li>
-        <p>Their are no entries</p>
-    </li>
+ 
+    <div class="container-fluid bg-dark">
+        <div class="mx-auto text-center">
+            <h8 class="display-8 strong bg-dark text-white pb-5 ">
+                No Entries yet
+            </h8>
+        </div>
+
     {%endfor%}
-</ul>
-<a href="{% url 'learning_logs:New_Entry' topic.id %}">
-    Add Entry
-</a>
+</div>
+
+
+
+<div class="row">
+    <div class="pt-5 text-center">
+        {% buttons %}
+        <button name="submit" class="btn btn-dark btn-lg">
+            <strong>
+                <a href="{% url 'learning_logs:New_Entry' topic.id %}" class="text-decoration-none text-white">
+                    Add Entry
+                </a>
+      </strong>
+      </button>
+      {% endbuttons %}
+
+      </div>
+    </div>
+
     {% endblock content %}
