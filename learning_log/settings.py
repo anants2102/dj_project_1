@@ -63,7 +63,7 @@ SETTINGS_PATH = os.path.dirname(os.path.dirname(__file__))
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / '/templates'],
+        'DIRS': [BASE_DIR / '/mtemplates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
