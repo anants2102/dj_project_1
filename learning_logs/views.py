@@ -13,7 +13,7 @@ def index(request):
 def Topics(request):
     topics = Topic.objects.filter(owner = request.user).order_by('date_added')
     context = {'topics':topics}
-    return render(request,"learning_logs\Topic.html",context)
+    return render(request,"Topic.html",context)
 
 @login_required
 def topic(request,topic_id):
@@ -22,7 +22,7 @@ def topic(request,topic_id):
         raise Http404
     entries = top.entry_set.order_by('date_added')
     context = {'topic':top,'entries':entries }
-    return render(request,"learning_logs\detail.html",context)
+    return render(request,"detail.html",context)
 
 @login_required
 def Newt(request):
@@ -36,7 +36,7 @@ def Newt(request):
             newt.save()
             return HttpResponseRedirect(reverse('learning_logs:Topic'))
     context = {'form':form}
-    return render(request,"learning_logs/newTopic.html", context)
+    return render(request,"newTopic.html", context)
 
 @login_required
 def Newe(request,topic_id):
@@ -51,4 +51,4 @@ def Newe(request,topic_id):
             new_entry.save()
             return HttpResponseRedirect(reverse('learning_logs:Topic',args = [topic_id]))
     context = {'topic':top,'form':eform}
-    return render(request,'learning_logs/newEntry.html',context)
+    return render(request,'newEntry.html',context)
