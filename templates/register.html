@@ -1,0 +1,30 @@
+{% extends 'learning_logs/base.html' %}
+{% load bootstrap5 %}
+{% block content %}
+<div class="container-fluid bg-dark">
+    <div class="row text-center ">
+        <p class=" m-0 p-0">
+        <h4 class="display-4 bg-dark text-white pb-5">
+            Register a new account
+        </h4>
+        </p>
+    </div>
+    <div class="container-fluid">
+        <form method="post" action="{% url 'users:register' %} " class="form">
+            {% csrf_token %}
+            <!-- {{ form.as_p }} -->
+            {% bootstrap_form form%}
+            <div class="pt-5 text-center">
+                {% buttons %}
+                <button name="submit" class="btn btn-outline-light btn-lg ">
+                    <strong>
+                        Register
+                    </strong>
+                </button>
+                {% endbuttons %}
+            </div>
+            <input type="hidden" name="next" value="{% url 'learning_logs:index' %}" />
+        </form>
+    </div>
+</div>
+{% endblock content %}

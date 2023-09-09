@@ -1,0 +1,44 @@
+{%extends 'learning_logs/base.html' %}
+{% load bootstrap5 %}
+{% block content %}
+<div class="container-fluid bg-dark">
+    <div class="row text-center ">
+        <p class=" m-0 p-0">
+           <h4 class="display-4 bg-dark text-white pb-5">
+            Log in to your account
+           </h4>
+        </p>
+    </div>
+    <div class="row p-5 bg-dark text-white">
+        {% if form.errors %}
+        <p>Your user login is not successfull</p>
+        {% endif %}
+
+        <div class="container-fluid justify-content-center ">
+            <form method="post" action="{% url 'users:login'%}" class="form">
+                {% csrf_token %}
+                {% bootstrap_form form%}
+                <!-- {{form.as_p}} -->
+               
+<div class="row text-center m-5">
+
+    <div class="coulmn ">
+        
+        {% buttons %}
+        <button name = "submit"  class="btn btn-light text-dark btn-lg ">Log in</button>
+                        {% endbuttons %}
+                     </div>
+                     <div class="coulmn">
+
+            
+                        </div>   
+                        
+                    </div>
+                </div>
+                    
+                <input type="hidden" name = "next" value = "{% url 'learning_logs:index'%}" />
+            </form>
+        </div>
+    </div>
+    </div>
+{% endblock content %}
